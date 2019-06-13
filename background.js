@@ -6,7 +6,6 @@ const urls = ['tripadvisor.com', 'linkedin.com', 'facebook.com', 'spotify.com', 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     if (changeInfo.status === 'complete') {
         console.log('change info ', changeInfo)
-        alert('updated from background');
         chrome.tabs.query({
             active: true, // Select active tabs
             lastFocusedWindow: true // In the current window
@@ -19,6 +18,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
             for (let i = 0; i < urls.length; i++) {
                 if (url.includes(urls[i])) {
                     console.log(`${url} inclues ${urls[i]}: `, url.includes(urls[i]) ? true : false)
+                    injectContentScript();
                     return;
                 }
             }
@@ -26,3 +26,10 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
         })
     };
 });
+
+function injectContentScript() {
+  chrome.tabs.executeScript({file: "contents_script.js"}, function() {
+    console.log("content loaded");
+});
+}
+
