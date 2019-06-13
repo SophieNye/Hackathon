@@ -1,8 +1,8 @@
 let selectorsObj = {
   'tripadvisor.com': {
   'search': `.brand-trip-search-geopill-TripSearchGeoPill__pillWrap--2_fwr`,
-  'profile': `.brand-global-nav-action-profile-Profile__loggedOutIcon--YhUxY`,
-  'home':`.brand-header-Logo__logo--x3aMw`,
+  'profile': `.brand-global-nav-action-profile-Profile__loggedOutIconWrap--1Gjms`,
+  'home':`.brand-header-Logo__logoContainer--2lBDe`,
   },
   'linkedin.com': {
     'search': '[role=“combobox”]',
@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener(
     else if (request.type == "button") {
       console.log('request from button received',request)
       const selector = selectors[request.button];
-      removeCSS(selector);
+      // removeCSS(selector);
       addCSS(selector);
 
     }
@@ -49,12 +49,13 @@ function addCSS(selector) {
   body.appendChild(film);
   body.style.backgroundColor = 'rgba(0, 0, 0, 0.25)!important';
   button.style.opacity = '1';
+  button.style.position = 'relative';
   button.style.zIndex = '100';
   button.animate([{
-          boxShadow: "0 0 8px 8px #fff"
+          boxShadow: "0 0 8px 8px #ffff00"
       },
       {
-          boxShadow: "0 0 0 0 #fff"
+          boxShadow: "0 0 0 0 #ffff00"
       }
   ], {
       duration: 2000,
@@ -64,6 +65,10 @@ function addCSS(selector) {
 
   body.addEventListener("click", () => {
     console.log('clicked on body, removing css')
+    removeCSS(selector);
+  })
+  film.addEventListener("click", () => {
+    console.log('clicked on film, removing css')
     removeCSS(selector);
   })
 }
@@ -85,6 +90,7 @@ function removeCSS(selector) {
       iterations: Infinity,
       direction: 'alternate-reverse'
   });
+  button.style.zIndex='1';
   document.body.removeChild(document.querySelector('#breadcrumbs-film'));
 }
 
