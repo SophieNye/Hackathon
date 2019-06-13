@@ -6,6 +6,9 @@
   "web_accessible_resources": [
     "contents_script.js"
   ],
+  "browser_action": {
+    "default_popup": "modal.html"
+  },
   "content_scripts": [
     {
     "matches": [

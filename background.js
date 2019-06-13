@@ -6,7 +6,6 @@ const urls = ['tripadvisor.com', 'linkedin.com', 'facebook.com', 'spotify.com', 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     if (changeInfo.status === 'complete') {
         console.log('change info ', changeInfo)
-        alert('updated from background');
         chrome.tabs.query({
             active: true, // Select active tabs
             lastFocusedWindow: true // In the current window
