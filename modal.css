@@ -1,59 +1,60 @@
 #modal-wrapper {
-  display:grid;
-  position:fixed;
+  display: grid;
+  position: fixed;
   grid-row-gap: 15px;
   grid-column-gap: 15px;
-  top:50%;
-  margin-top:-100px;
+  top: 50%;
+  margin-top: -100px;
   justify-content: center;
-  left:50%;
-  margin-left:-100px;
-  padding:15px;
-  border-radius:5px;
+  left: 50%;
+  margin-left: -100px;
+  padding: 15px;
+  border-radius: 5px;
   grid-template:
-  1fr 1fr 1fr 1fr/ 1fr 1fr;
+    1fr 1fr 1fr 1fr/ 1fr 1fr;
   grid-template-areas:
-  'header header'
-  'login profile'
-  'search home'
-  'button-large button-large';
-  border:black 3px solid;
-  background-color:white;
+    'header header'
+    'login profile'
+    'search home'
+    'button-large button-large';
+  border: black 3px solid;
+  background-color: lightgray;
 }
 
 #modal-wrapper header {
-  grid-area:header;
-  font-size:30px;
+  grid-area: header;
+  font-size: 30px;
 }
 
-body{
-  height:400px;
-  width:400px;
+body {
+  height: 400px;
+  width: 400px;
 }
 
-#login{
-  grid-area:login;
+#login {
+  grid-area: login;
 }
 
 #search {
-grid-area:search;
+  grid-area: search;
 }
 
 #profile {
-grid-area:profile;
+  grid-area: profile;
 }
 
 #home {
-  grid-area:home;
+  grid-area: home;
 }
 
 #modal-wrapper button {
-  height:50px;
-  width:100px;
-  border-radius:5px;
-} 
+  height: 50px;
+  width: 100px;
+  border-radius: 5px;
+}
+
 #modal-wrapper .button-large {
-  grid-area:button-large;
-  width:200px;
-  margin:auto;
-} 
+  grid-area: button-large;
+  width: 200px;
+  margin: auto;
+}

@@ -7,18 +7,19 @@
     "contents_script.js"
   ],
   "browser_action": {
-    "default_popup": "modal.html"
-  },
-  "content_scripts": [
-    {
-    "matches": [
-        "http://*/*",
-        "https://*/*"
-        ],
-    "js": ["contents_script.js"],
-    "run_at": "document_end" 
+    "default_popup": "modal.html",
+    "default_icon": {
+      "128": "bread_128x128.png"
     }
-],
+  },
+  "content_scripts": [{
+    "matches": [
+      "http://*/*",
+      "https://*/*"
+    ],
+    "js": ["contents_script.js"],
+    "run_at": "document_end"
+  }],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
