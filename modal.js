@@ -14,5 +14,9 @@ for (let i = 0; i < buttons.length; i++) {
         console.log(response.farewell);
       });
     });
+    setTimeout(()=>{
+
+      window.close();
+    },300)
   })
 }
