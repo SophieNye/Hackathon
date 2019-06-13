@@ -4,11 +4,18 @@
   "description": "Simplify your browsing experience and find only the things you really need.",
   "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
   "web_accessible_resources": [
-    "widget.css",
-    "modal.html",
-    "websites.js",
-    "bootstrap.min.css"
+    "contents_script.js"
   ],
+  "content_scripts": [
+    {
+    "matches": [
+        "http://*/*",
+        "https://*/*"
+        ],
+    "js": ["contents_script.js"],
+    "run_at": "document_end" 
+    }
+],
   "background": {
     "scripts": ["background.js"],
     "persistent": false

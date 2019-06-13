@@ -19,6 +19,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
             for (let i = 0; i < urls.length; i++) {
                 if (url.includes(urls[i])) {
                     console.log(`${url} inclues ${urls[i]}: `, url.includes(urls[i]) ? true : false)
+                    injectContentScript();
                     return;
                 }
             }
@@ -26,3 +27,10 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
         })
     };
 });
+
+function injectContentScript() {
+  chrome.tabs.executeScript({file: "contents_script.js"}, function() {
+    console.log("content loaded");
+});
+}
+
