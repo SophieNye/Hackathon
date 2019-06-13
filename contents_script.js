@@ -1,15 +1,13 @@
 let selectorsObj = {
   'tripadvisor.com': {
-  'search': '#component_10 > div > div > div > div > div > div > div.brand-header-GlobalNavActions__searchWrap--2XBZ1 > div',
-  'profile': '#component_10 > div > div > div > div > div > div > div:nth-child(6) > div > div:nth-child(1) > div > span > span',
-  'home':'',
-  'login':'.ui_icon.friend.brand-global-nav-action-profile-Profile__loggedOutIcon--YhUxY'
+  'search': `.brand-trip-search-geopill-TripSearchGeoPill__pillWrap--2_fwr`,
+  'profile': `.brand-global-nav-action-profile-Profile__loggedOutIcon--YhUxY`,
+  'home':`.brand-header-Logo__logo--x3aMw`,
   },
   'linkedin.com': {
-    'search': '#ember33 > input[type=text]',
-    'profile': '#nav-settings__dropdown-trigger',
-    'home':'#feed-nav-item',
-    'login':'#component_12 > div > div > div > div > div > div > div:nth-child(6) > div > a.ui_button.primary.small.brand-global-nav-action-profile-Profile__loginButton--2fZJK'
+    'search': '[role=“combobox”]',
+    'profile': '.nav-item__profile-member-photo',
+    'home':'.nav-item__icon--inbug',
     }
 }
 
@@ -29,11 +27,6 @@ chrome.runtime.onMessage.addListener(
 
       addCSS(selector);
 
-      // const body = document.querySelector("body")
-      //   body.addEventListener("click", () => {
-      //     removeCSS(selector);
-      //   })
-
     }
 });
 
@@ -48,8 +41,15 @@ function addCSS(selector) {
   console.log('did I find button?',button)
   let body = document.querySelector("body");
   console.log(body)
-  body.style.backgroundColor = "rgba(0, 0, 0, 0.25)!important";
-  button.style.opacity = "1";
+
+  let film = document.createElement("div");
+  film.style.cssText = 'width:100vw; height:100vh; position:fixed; top:0; left: 0; background-color: rgba(0, 0, 0, 0.25); z-index:99';
+  film.id = 'breadcrumbs-film';
+  console.log(film)
+  body.appendChild(film);
+  body.style.backgroundColor = 'rgba(0, 0, 0, 0.25)!important';
+  button.style.opacity = '1';
+  button.style.zIndex = '100';
   button.animate([{
           boxShadow: "0 0 8px 8px #fff"
       },
@@ -61,8 +61,12 @@ function addCSS(selector) {
       iterations: Infinity,
       direction: 'alternate-reverse'
   });
-}
 
+  body.addEventListener("click", () => {
+    console.log('clicked on body, removing css')
+    removeCSS(selector);
+  })
+}
 
 
 function removeCSS(selector) {
@@ -82,5 +86,6 @@ function removeCSS(selector) {
       iterations: Infinity,
       direction: 'alternate-reverse'
   });
+  document.body.removeChild(document.querySelector('#breadcrumbs-film'));
 }
 
