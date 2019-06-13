@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener(
     else if (request.type == "button") {
       console.log('request from button received',request)
       const selector = selectors[request.button];
-
+      removeCSS(selector);
       addCSS(selector);
 
     }
@@ -73,7 +73,6 @@ function removeCSS(selector) {
   console.log('remove css: ', selector)
   let button = document.querySelector(selector);
   let body = document.querySelector("body");
-  body.style.backgroundColor = "rgba(0, 0, 0, 0)";
   button.style.opacity = "1";
   button.animate([{
           boxShadow: "0 0 0 0 #fff"
